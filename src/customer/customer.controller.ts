@@ -1,4 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 import { CustomerService } from './customer.service';
 import { CreateCustomerDto } from './dto/create-customer.dto';
 import { UpdateCustomerDto } from './dto/update-customer.dto';
@@ -7,9 +17,10 @@ import { UpdateCustomerDto } from './dto/update-customer.dto';
 export class CustomerController {
   constructor(private readonly customerService: CustomerService) {}
 
-  @Post()
+  @Post('/create')
+  @UsePipes(ValidationPipe)
   create(@Body() createCustomerDto: CreateCustomerDto) {
-    return this.customerService.create(createCustomerDto);
+    return { data: createCustomerDto };
   }
 
   @Get()
@@ -23,7 +34,10 @@ export class CustomerController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCustomerDto: UpdateCustomerDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateCustomerDto: UpdateCustomerDto,
+  ) {
     return this.customerService.update(+id, updateCustomerDto);
   }
 

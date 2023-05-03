@@ -9,7 +9,12 @@ export class CustomerService {
   }
 
   findAll() {
-    return `This action returns all customer`;
+    return [
+      {
+        id: 1,
+        name: 'vinay',
+      },
+    ];
   }
 
   findOne(id: number) {
