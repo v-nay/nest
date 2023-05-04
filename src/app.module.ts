@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { CustomerModule } from './customer/customer.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { typeOrmConfig } from './config/typeorm.config';
+import { typeOrmConfigAsync } from './config/typeorm.config';
 
 @Module({
-  imports: [CustomerModule, TypeOrmModule.forRoot(typeOrmConfig)],
+  imports: [CustomerModule, TypeOrmModule.forRootAsync(typeOrmConfigAsync)],
   controllers: [],
   providers: [],
 })
