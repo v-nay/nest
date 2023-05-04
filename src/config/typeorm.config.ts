@@ -9,16 +9,11 @@ export default class TypeOrmConfig {
   static getOrmConfig(configService: ConfigService): TypeOrmModuleOptions {
     return {
       type: 'mysql',
-      // host: configService.get('DB_HOST'),
-      // port: configService.get('DB_PORT'),
-      // username: configService.get('DB_USERNAME'),
-      // password: TypeOrmConfig.getPassword(configService),
-      // database: configService.get('DB_DATABASE'),
-      host: '127.0.0.1',
-      port: 8889,
-      username: 'root',
-      password: 'root',
-      database: 'nest_crud',
+      host: configService.get('DB_HOST'),
+      port: configService.get('DB_PORT'),
+      username: configService.get('DB_USERNAME'),
+      password: TypeOrmConfig.getPassword(configService),
+      database: configService.get('DB_DATABASE'),
       entities: [Customer],
       synchronize: true,
     };
