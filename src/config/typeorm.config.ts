@@ -4,6 +4,7 @@ import {
   TypeOrmModuleOptions,
 } from '@nestjs/typeorm';
 import { Customer } from 'src/customer/entities/customer.entity';
+import { User } from 'src/user/entity/user.entity';
 
 export default class TypeOrmConfig {
   static getOrmConfig(configService: ConfigService): TypeOrmModuleOptions {
@@ -14,7 +15,7 @@ export default class TypeOrmConfig {
       username: configService.get('DB_USERNAME'),
       password: TypeOrmConfig.getPassword(configService),
       database: configService.get('DB_DATABASE'),
-      entities: [Customer],
+      entities: [User, Customer],
       synchronize: true,
     };
   }
