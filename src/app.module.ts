@@ -5,6 +5,8 @@ import { typeOrmConfigAsync } from './config/typeorm.config';
 import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './user/user.module';
 import { dataSourceOption } from 'db/data-source';
+import { AuthModule } from './auth/auth.module';
+import { PassportModule } from '@nestjs/passport';
 
 @Module({
   imports: [
@@ -13,6 +15,7 @@ import { dataSourceOption } from 'db/data-source';
     TypeOrmModule.forRoot(dataSourceOption),
     CustomerModule,
     UserModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],
